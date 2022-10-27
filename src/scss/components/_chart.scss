@@ -1,0 +1,35 @@
+.charts {
+  width: 50%;
+  margin: auto;
+  p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @include mobileL {
+    width: 80%;
+    margin-bottom: 5rem;
+  }
+
+  @include tablet {
+    width: 85%;
+  }
+  h2 {
+    margin: 1rem;
+    font-weight: 500;
+  }
+  &__dropdown-menu {
+    margin-bottom: 2rem;
+  }
+
+  &__plot {
+    background-color: #fff;
+    margin: auto;
+    margin-top: 0.5rem;
+  }
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+  font-size: 4rem;
+}

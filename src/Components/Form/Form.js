@@ -2,15 +2,16 @@ import React from "react";
 import {useFormik} from "formik";
 import {useDispatch} from "react-redux";
 import {fecthExcRateData} from "../Chart/chartSlice";
-import {formsubmit} from "./formSlice";
+import {formsubmit, getFetchedtime} from "./formSlice";
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
 import {classNames} from "primereact/utils";
 import "primeicons/primeicons.css";
-import "primereact/resources/themes/lara-light-indigo/theme.css";
+
+import "primereact/resources/themes/luna-green/theme.css";
+
 import "primereact/resources/primereact.css";
 import "primeflex/primeflex.css";
-import "./_form.scss";
 
 export default function Form() {
   // const [formData, setFormData] = useState({});
@@ -36,8 +37,9 @@ export default function Form() {
     },
     onSubmit: (data) => {
       dispatch(fecthExcRateData());
-      dispatch(formsubmit());
-      console.log("awesome");
+      dispatch(formsubmit(data));
+      dispatch(getFetchedtime());
+      formik.resetForm();
     },
   });
   const isFormFieldValid = (name) => !!(formik.touched[name] && formik.errors[name]);
@@ -47,9 +49,10 @@ export default function Form() {
 
   return (
     <div className="form-demo">
-      <div className="flex justify-content-center">
+      <div className="form-demo__container">
         <div className="card">
-          <h5 className="text-center">Pleae enter your details</h5>
+          <h1>Currency exchange Rate Comparison Chart</h1>
+          <h2 className="text-center">Please enter your details</h2>
           <form onSubmit={formik.handleSubmit} className="p-fluid">
             <div className="field">
               <span className="p-float-label">
@@ -70,7 +73,7 @@ export default function Form() {
               </span>
               {getFormErrorMessage("email")}
             </div>
-            <Button type="submit" label="Submit" className="mt-2" />
+            <Button type="submit" label="View chart" className="mt-2" />
           </form>
         </div>
       </div>

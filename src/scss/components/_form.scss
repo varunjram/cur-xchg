@@ -1,0 +1,64 @@
+.p-dropdown {
+  width: 6rem;
+}
+
+.p-inputtext {
+  padding: 0.5rem;
+}
+.form-demo {
+  margin: auto;
+  &__container {
+    .card {
+      h1 {
+        margin-top: 2rem;
+
+        @include mobileL {
+          margin-top: 1rem;
+          font-size: 2rem;
+          padding: 0rem 3rem;
+        }
+        @include tablet {
+          font-size: 1.5rem;
+        }
+      }
+      h2 {
+        font-size: 1.5rem;
+        margin: 1rem 0rem;
+        font-weight: 100;
+      }
+    }
+    .p-fluid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 60%;
+      margin: auto;
+      margin-top: 2rem;
+      @include mobileL {
+        flex-direction: column;
+        margin-top: 3rem;
+      }
+
+      @include tablet {
+        width: 80%;
+      }
+
+      div {
+        margin: 0;
+        @include mobileL {
+          width: 100%;
+          margin-bottom: 1.5rem;
+        }
+      }
+
+      button {
+        width: 10rem;
+        margin: 0 !important;
+        align-self: flex-start;
+        @include mobileL {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
