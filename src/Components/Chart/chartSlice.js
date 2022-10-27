@@ -176,12 +176,11 @@ const initialState = {
     "ZMW",
     "ZWL",
   ],
-  baseCountry: "USD",
+  baseCountry: "INR",
 };
 
-const fecthExcRateData = createAsyncThunk("chart/fecthExcRateData", async (_, thunkAPI) => {
-  const {baseCountry} = thunkAPI.getState();
-  const fetch = await axios(`https://api.exchangerate.host/latest?${baseCountry}`);
+const fecthExcRateData = createAsyncThunk("chart/fecthExcRateData", async (country) => {
+  const fetch = await axios(`https://api.exchangerate.host/latest?base=${country ? country : "INR"}`);
   return fetch.data;
 });
 

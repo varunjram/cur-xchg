@@ -1,14 +1,14 @@
 import "./App.css";
 import Chart from "./Components/Chart/Chart";
 import Form from "./Components/Form/Form";
-import {fecthExcRateData} from "./Components/Chart/chartSlice";
+import {useSelector} from "react-redux";
 
-fecthExcRateData();
 function App() {
+  const {isFormSubmitted} = useSelector((state) => state.form);
   return (
     <div className="App">
       <Form />
-      <Chart />
+      {isFormSubmitted && <Chart />}
     </div>
   );
 }
