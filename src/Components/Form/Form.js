@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {useFormik} from "formik";
 import {useDispatch} from "react-redux";
 import {fecthExcRateData} from "../Chart/chartSlice";
-import {formsubmit, getFetchedtime, revertAll} from "./formSlice";
+import {formsubmit, getFetchedtime} from "./formSlice";
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
 import {classNames} from "primereact/utils";
