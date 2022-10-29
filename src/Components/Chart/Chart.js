@@ -46,6 +46,9 @@ export default function Chart() {
       },
     },
   };
+  useEffect(() => {
+    setTimer(0);
+  }, [user]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -73,7 +76,7 @@ export default function Chart() {
       <h2>{`${isFormSubmitted ? user.name : "null"} your requesed data `}</h2>
       <Dropdown className="charts__dropdown-menu" options={countryCodes} value={baseCountry} onChange={(e) => dispatch(setBaseCountry(e.target.value))} editable />
       <p>
-        {`below data is last fetched on ${lastfetchedTimeData}`}&nbsp;&nbsp;
+        {`Data last fetched on ${lastfetchedTimeData}`}&nbsp;&nbsp;
         <span style={{width: 30, height: 30, display: "inline-block"}}>
           <CircularProgressbar value={timer * 3.333} text={`${timer}`} />
         </span>
@@ -81,6 +84,17 @@ export default function Chart() {
 
       <div className="charts__plot">
         <Bar options={options} data={data} />
+        <div className="countries">Countries</div>
+      </div>
+
+      <div className="exchange-Rates">
+        {pickedCountries.map(([country, rate]) => (
+          <p>
+            {rate.toFixed(2)}
+            <img className="flag" src={`/assets/images/${country}.svg`} alt="country" />
+            {country}
+          </p>
+        ))}
       </div>
     </section>
   );

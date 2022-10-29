@@ -1,8 +1,8 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useFormik} from "formik";
 import {useDispatch} from "react-redux";
 import {fecthExcRateData} from "../Chart/chartSlice";
-import {formsubmit, getFetchedtime} from "./formSlice";
+import {formsubmit, getFetchedtime, revertAll} from "./formSlice";
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
 import {classNames} from "primereact/utils";
@@ -35,6 +35,7 @@ export default function Form() {
 
       return errors;
     },
+
     onSubmit: (data) => {
       dispatch(fecthExcRateData());
       dispatch(formsubmit(data));
@@ -46,6 +47,9 @@ export default function Form() {
   const getFormErrorMessage = (name) => {
     return isFormFieldValid(name) && <small className="p-error">{formik.errors[name]}</small>;
   };
+  useEffect(() => {
+    // return () => dispatch(revertAll());
+  }, []);
 
   return (
     <div className="form-demo">
@@ -56,7 +60,15 @@ export default function Form() {
           <form onSubmit={formik.handleSubmit} className="p-fluid">
             <div className="field">
               <span className="p-float-label">
-                <InputText id="name" name="name" value={formik.values.name} onChange={formik.handleChange} autoFocus className={classNames({"p-invalid": isFormFieldValid("name")})} />
+                <InputText
+                  id="name"
+                  name="name"
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  autoFocus
+                  className={classNames({"p-invalid": isFormFieldValid("name")})}
+                  autocomplete="on"
+                />
                 <label htmlFor="name" className={classNames({"p-error": isFormFieldValid("name")})}>
                   First-name*
                 </label>

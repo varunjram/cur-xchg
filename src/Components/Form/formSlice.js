@@ -1,13 +1,14 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, createAction} from "@reduxjs/toolkit";
 
 const initialState = {
   isFormSubmitted: false,
   user: {
-    name: "fgh",
-    email: "fff",
+    name: "",
+    email: "",
   },
   lastfetchedTimeData: "",
 };
+export const revertAll = createAction("REVERT_ALL");
 
 const formslice = createSlice({
   name: "form",
@@ -27,6 +28,9 @@ const formslice = createSlice({
         second: "2-digit",
       });
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(revertAll, () => initialState);
   },
 });
 

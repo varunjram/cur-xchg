@@ -21,15 +21,58 @@
   }
   &__dropdown-menu {
     margin-bottom: 2rem;
+    @include laptopL {
+      margin-bottom: 1rem;
+    }
   }
 
   &__plot {
     background-color: #fff;
     margin: auto;
     margin-top: 0.5rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    padding-bottom: 0rem;
+
+    .countries {
+      color: #000;
+      font-weight: 600;
+    }
   }
 }
 
 .CircularProgressbar .CircularProgressbar-text {
   font-size: 4rem;
+}
+
+.exchange-Rates {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem 3rem;
+  width: 100%;
+  @include mobileL {
+    padding: 1rem 0rem;
+  }
+  p {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.5rem 0rem;
+
+    @include mobileL {
+      font-size: 0.8rem;
+    }
+
+    .flag {
+      width: 4rem;
+      height: 4rem;
+      @include mobileL {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+  }
 }
