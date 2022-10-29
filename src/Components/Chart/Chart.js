@@ -88,8 +88,8 @@ export default function Chart() {
       </div>
 
       <div className="exchange-Rates">
-        {pickedCountries.map(([country, rate]) => (
-          <p>
+        {pickedCountries.map(([country, rate], i) => (
+          <p key={i}>
             {rate.toFixed(2)}
             <img className="flag" src={`/assets/images/${country}.svg`} alt="country" />
             {country}

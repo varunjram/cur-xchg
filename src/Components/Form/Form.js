@@ -60,15 +60,7 @@ export default function Form() {
           <form onSubmit={formik.handleSubmit} className="p-fluid">
             <div className="field">
               <span className="p-float-label">
-                <InputText
-                  id="name"
-                  name="name"
-                  value={formik.values.name}
-                  onChange={formik.handleChange}
-                  autoFocus
-                  className={classNames({"p-invalid": isFormFieldValid("name")})}
-                  autocomplete="on"
-                />
+                <InputText id="name" name="name" value={formik.values.name} onChange={formik.handleChange} autoFocus className={classNames({"p-invalid": isFormFieldValid("name")})} />
                 <label htmlFor="name" className={classNames({"p-error": isFormFieldValid("name")})}>
                   First-name*
                 </label>
