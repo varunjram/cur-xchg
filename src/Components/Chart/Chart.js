@@ -24,7 +24,7 @@ export default function Chart() {
     labels,
     datasets: [
       {
-        label: `Currency exchange rates when compared with ${baseCountry}`,
+        label: `Currency exchange rates compared with ${baseCountry}`,
         data: currencyRates,
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
@@ -73,7 +73,7 @@ export default function Chart() {
   }, [baseCountry, dispatch]);
   return (
     <section className="charts">
-      <h2>{`${isFormSubmitted ? user.name : "null"} your requesed data `}</h2>
+      <h2>{`${isFormSubmitted ? user.name : "null"} your requested data `}</h2>
       <Dropdown className="charts__dropdown-menu" options={countryCodes} value={baseCountry} onChange={(e) => dispatch(setBaseCountry(e.target.value))} editable />
       <p>
         {`Data last fetched on ${lastfetchedTimeData}`}&nbsp;&nbsp;
