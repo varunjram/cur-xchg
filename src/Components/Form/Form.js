@@ -1,20 +1,18 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useFormik} from "formik";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {fecthExcRateData} from "../Chart/chartSlice";
-import {formsubmit, getFetchedtime} from "./formSlice";
+import {formsubmit, getFetchedtime, revertAll} from "./formSlice";
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
 import {classNames} from "primereact/utils";
 import "primeicons/primeicons.css";
-
 import "primereact/resources/themes/luna-green/theme.css";
-
 import "primereact/resources/primereact.css";
 import "primeflex/primeflex.css";
 
 export default function Form() {
-  // const [formData, setFormData] = useState({});
+  const {isFormSubmitted} = useSelector((state) => state.form);
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -47,9 +45,10 @@ export default function Form() {
   const getFormErrorMessage = (name) => {
     return isFormFieldValid(name) && <small className="p-error">{formik.errors[name]}</small>;
   };
-  useEffect(() => {
-    // return () => dispatch(revertAll());
-  }, []);
+
+  const signOut = () => {
+    dispatch(revertAll());
+  };
 
   return (
     <div className="form-demo">
@@ -60,7 +59,14 @@ export default function Form() {
           <form onSubmit={formik.handleSubmit} className="p-fluid">
             <div className="field">
               <span className="p-float-label">
-                <InputText id="name" name="name" value={formik.values.name} onChange={formik.handleChange} autoFocus className={classNames({"p-invalid": isFormFieldValid("name")})} />
+                <InputText
+                  id="name"
+                  name="name"
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  autoFocus
+                  className={classNames({"p-invalid": isFormFieldValid("name")})}
+                />
                 <label htmlFor="name" className={classNames({"p-error": isFormFieldValid("name")})}>
                   First-name*
                 </label>
@@ -70,8 +76,16 @@ export default function Form() {
             <div className="field">
               <span className="p-float-label p-input-icon-right">
                 <i className="pi pi-envelope" />
-                <InputText id="email" name="email" value={formik.values.email} onChange={formik.handleChange} className={classNames({"p-invalid": isFormFieldValid("email")})} />
-                <label htmlFor="email" className={classNames({"p-error": isFormFieldValid("email")})}>
+                <InputText
+                  id="email"
+                  name="email"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  className={classNames({"p-invalid": isFormFieldValid("email")})}
+                />
+                <label
+                  htmlFor="email"
+                  className={classNames({"p-error": isFormFieldValid("email")})}>
                   Email*
                 </label>
               </span>
@@ -81,6 +95,9 @@ export default function Form() {
           </form>
         </div>
       </div>
+      {isFormSubmitted && (
+        <Button label="Sign-Out" onClick={signOut} className="p-button-secondary pos-absolute" />
+      )}
     </div>
   );
 }

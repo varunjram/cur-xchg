@@ -18,6 +18,9 @@ const formslice = createSlice({
       state.isFormSubmitted = true;
       state.user = {...action.payload};
     },
+    userLogOut: (state, action) => {
+      state.isFormSubmitted = false;
+    },
     getFetchedtime: (state) => {
       state.lastfetchedTimeData = new Date().toLocaleDateString(undefined, {
         day: "2-digit",
@@ -35,4 +38,4 @@ const formslice = createSlice({
 });
 
 export default formslice.reducer;
-export const {formsubmit, getFetchedtime} = formslice.actions;
+export const {formsubmit, getFetchedtime, userLogOut} = formslice.actions;
